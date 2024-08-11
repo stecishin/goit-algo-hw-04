@@ -11,14 +11,18 @@ def total_salary(path):
                 if not line:
                     break
 
-                salary = int(line.split(",")[1])
+                salary = float(line.split(",")[1])
                 total += salary
                 employee += 1
-                average = int(total / employee)
+                
+            if employee > 0:
+                average = total / employee
+            else:
+                average = 0
     
     except FileNotFoundError:
         return f"File not found."
 
-    return f"Загальна сума заробітної плати: {total}, Середня заробітна плата: {average}"
+    return total, average
 
 print(total_salary(path))
